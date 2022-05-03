@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = GameViewModel(service: GoogleSheetsService())
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Group {
+            switch viewModel.state {
+                case .loading:
+                    ProgressView()
+                case .failed(let error):
+                    ErrorView(error: error, handler: viewModel.getWord)
+                case .success(let word):
+                    Text(word)
+            }
+        }
     }
 }
 

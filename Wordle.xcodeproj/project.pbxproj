@@ -7,18 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99393BDD0F60E9E321075EBC /* libPods-Wordle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */; };
 		E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF92552809A03B005230C6 /* WordleApp.swift */; };
 		E7BF92582809A03B005230C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF92572809A03B005230C6 /* ContentView.swift */; };
 		E7BF925A2809A03F005230C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BF92592809A03F005230C6 /* Assets.xcassets */; };
 		E7BF925D2809A03F005230C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BF925C2809A03F005230C6 /* Preview Assets.xcassets */; };
+		E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85A942820C88200EC5D8F /* GameViewModel.swift */; };
+		E7D85A992820CFD800EC5D8F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = E7D85A982820CFD800EC5D8F /* GoogleSignIn */; };
+		E7D85A9B2820D0CC00EC5D8F /* GoogleSheetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85A9A2820D0CC00EC5D8F /* GoogleSheetsService.swift */; };
+		E7D85A9D2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7D85A9C2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist */; };
+		E7D85AA02820D77200EC5D8F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85A9F2820D77200EC5D8F /* Endpoint.swift */; };
+		E7D85AA22820D81B00EC5D8F /* WordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA12820D81B00EC5D8F /* WordsResponse.swift */; };
+		E7D85AA42820D82100EC5D8F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA32820D82100EC5D8F /* APIError.swift */; };
+		E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA62820DAB700EC5D8F /* ResultState.swift */; };
+		E7D85AAA2820DD7700EC5D8F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA92820DD7700EC5D8F /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2069E62A388EAC39C91D31AA /* Pods-Wordle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.debug.xcconfig"; path = "Target Support Files/Pods-Wordle/Pods-Wordle.debug.xcconfig"; sourceTree = "<group>"; };
+		64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wordle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5EAD6AB36C334016513DEA5 /* Pods-Wordle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.release.xcconfig"; path = "Target Support Files/Pods-Wordle/Pods-Wordle.release.xcconfig"; sourceTree = "<group>"; };
 		E7BF92522809A03B005230C6 /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BF92552809A03B005230C6 /* WordleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleApp.swift; sourceTree = "<group>"; };
 		E7BF92572809A03B005230C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E7BF92592809A03F005230C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7BF925C2809A03F005230C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E7D85A942820C88200EC5D8F /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		E7D85A962820CD7E00EC5D8F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E7D85A9A2820D0CC00EC5D8F /* GoogleSheetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSheetsService.swift; sourceTree = "<group>"; };
+		E7D85A9C2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
+		E7D85A9E2820D3B000EC5D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7D85A9F2820D77200EC5D8F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		E7D85AA12820D81B00EC5D8F /* WordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsResponse.swift; sourceTree = "<group>"; };
+		E7D85AA32820D82100EC5D8F /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		E7D85AA62820DAB700EC5D8F /* ResultState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultState.swift; sourceTree = "<group>"; };
+		E7D85AA92820DD7700EC5D8F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +49,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99393BDD0F60E9E321075EBC /* libPods-Wordle.a in Frameworks */,
+				E7D85A992820CFD800EC5D8F /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6573AF7510568E3691110F97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2069E62A388EAC39C91D31AA /* Pods-Wordle.debug.xcconfig */,
+				C5EAD6AB36C334016513DEA5 /* Pods-Wordle.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C321A52EA724E9BD69E8CF68 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E7BF92492809A03B005230C6 = {
 			isa = PBXGroup;
 			children = (
 				E7BF92542809A03B005230C6 /* Wordle */,
 				E7BF92532809A03B005230C6 /* Products */,
+				6573AF7510568E3691110F97 /* Pods */,
+				C321A52EA724E9BD69E8CF68 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,10 +95,16 @@
 		E7BF92542809A03B005230C6 /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
+				E7D85A9E2820D3B000EC5D8F /* Info.plist */,
+				E7D85AA82820DABC00EC5D8F /* CommonStuff */,
+				E7D85AA52820D84100EC5D8F /* Service */,
 				E7BF92552809A03B005230C6 /* WordleApp.swift */,
 				E7BF92572809A03B005230C6 /* ContentView.swift */,
-				E7BF92592809A03F005230C6 /* Assets.xcassets */,
+				E7D85AA92820DD7700EC5D8F /* ErrorView.swift */,
+				E7D85A942820C88200EC5D8F /* GameViewModel.swift */,
 				E7BF925B2809A03F005230C6 /* Preview Content */,
+				E7D85A962820CD7E00EC5D8F /* README.md */,
+				E7D85AA62820DAB700EC5D8F /* ResultState.swift */,
 			);
 			path = Wordle;
 			sourceTree = "<group>";
@@ -67,6 +117,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		E7D85AA52820D84100EC5D8F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E7D85A9A2820D0CC00EC5D8F /* GoogleSheetsService.swift */,
+				E7D85AA12820D81B00EC5D8F /* WordsResponse.swift */,
+				E7D85AA32820D82100EC5D8F /* APIError.swift */,
+				E7D85A9F2820D77200EC5D8F /* Endpoint.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E7D85AA82820DABC00EC5D8F /* CommonStuff */ = {
+			isa = PBXGroup;
+			children = (
+				E7BF92592809A03F005230C6 /* Assets.xcassets */,
+				E7D85A9C2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist */,
+			);
+			path = CommonStuff;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +144,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7BF92602809A03F005230C6 /* Build configuration list for PBXNativeTarget "Wordle" */;
 			buildPhases = (
+				AD717D16477B0B8DB72A9763 /* [CP] Check Pods Manifest.lock */,
 				E7BF924E2809A03B005230C6 /* Sources */,
 				E7BF924F2809A03B005230C6 /* Frameworks */,
 				E7BF92502809A03B005230C6 /* Resources */,
@@ -83,6 +154,9 @@
 			dependencies = (
 			);
 			name = Wordle;
+			packageProductDependencies = (
+				E7D85A982820CFD800EC5D8F /* GoogleSignIn */,
+			);
 			productName = Wordle;
 			productReference = E7BF92522809A03B005230C6 /* Wordle.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +185,9 @@
 				Base,
 			);
 			mainGroup = E7BF92492809A03B005230C6;
+			packageReferences = (
+				E7D85A972820CFD800EC5D8F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = E7BF92532809A03B005230C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,18 +204,51 @@
 			files = (
 				E7BF925D2809A03F005230C6 /* Preview Assets.xcassets in Resources */,
 				E7BF925A2809A03F005230C6 /* Assets.xcassets in Resources */,
+				E7D85A9D2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AD717D16477B0B8DB72A9763 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wordle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E7BF924E2809A03B005230C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */,
 				E7BF92582809A03B005230C6 /* ContentView.swift in Sources */,
+				E7D85A9B2820D0CC00EC5D8F /* GoogleSheetsService.swift in Sources */,
 				E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */,
+				E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */,
+				E7D85AA02820D77200EC5D8F /* Endpoint.swift in Sources */,
+				E7D85AA22820D81B00EC5D8F /* WordsResponse.swift in Sources */,
+				E7D85AAA2820DD7700EC5D8F /* ErrorView.swift in Sources */,
+				E7D85AA42820D82100EC5D8F /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +371,7 @@
 		};
 		E7BF92612809A03F005230C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2069E62A388EAC39C91D31AA /* Pods-Wordle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -270,6 +381,7 @@
 				DEVELOPMENT_TEAM = 243DG349TX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wordle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -290,6 +402,7 @@
 		};
 		E7BF92622809A03F005230C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5EAD6AB36C334016513DEA5 /* Pods-Wordle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -299,6 +412,7 @@
 				DEVELOPMENT_TEAM = 243DG349TX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wordle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +453,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E7D85A972820CFD800EC5D8F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E7D85A982820CFD800EC5D8F /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7D85A972820CFD800EC5D8F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E7BF924A2809A03B005230C6 /* Project object */;
 }

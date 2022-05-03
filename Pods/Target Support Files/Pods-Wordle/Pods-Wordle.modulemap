@@ -1,0 +1,6 @@
+module Pods_Wordle {
+  umbrella header "Pods-Wordle-umbrella.h"
+
+  export *
+  module * { export * }
+}
