@@ -9,42 +9,36 @@ import SwiftUI
 
 public protocol IAnswerUI {
     var gameStatus: GameStatus { get }
-    mutating func startNewGame(with word: String)
     mutating func addAnswer(_ answer: String)
 }
 
-internal struct AnswerView: View, IAnswerUI {
+struct Answer: Hashable {
+    let char: String
+    let status: CharPlace
+}
 
+internal struct AnswerView: View, IAnswerUI {
     private var guessingWord: String = ""
     internal var gameStatus: GameStatus = .inProgress
 
-    private var answersStruct = [[String: CharPlace]]()
+    private var answersStruct = [[Answer]]()
+
+    public init(word: String) {
+        self.guessingWord = word
+        self.gameStatus = .inProgress
+        self.answersStruct.removeAll()
+    }
 
     var body: some View {
         List() {
             ForEach(self.answersStruct, id: \.self) { answer in
                 HStack {
-                    Color.orange.scaledToFit()
-                    ForEach(answer.keys) { key in
-
+                    ForEach(answer, id: \.self) { element in
+                        LetterView(element.char, element.status).frame(width: 50.0, height: 50.0, alignment: .center)
                     }
-//                    ForEach(answer, id: \.self) { key in
-//
-//                    }
-//                    answer.keys.forEach { key in
-//                        if let value = answer[key] {
-//                            LetterView(key, value)
-//                        }
-//                    }
                 }
             }
         }
-    }
-
-    internal mutating func startNewGame(with word: String) {
-        self.guessingWord = word
-        self.gameStatus = .inProgress
-        self.answersStruct.removeAll()
     }
 
     internal mutating func addAnswer(_ answer: String) {
@@ -55,38 +49,36 @@ internal struct AnswerView: View, IAnswerUI {
         }
     }
 
-    private mutating func checkNewWord(_ newWord: String) -> [String: CharPlace] {
+    private mutating func checkNewWord(_ newWord: String) -> [Answer] {
         let newWordArrayOfChars = Array(arrayLiteral: newWord)
         let guessingWordArrayOfChars = Array(arrayLiteral: self.guessingWord)
-        var newAnswer: [String: CharPlace] = ["": .wrong]
+        var newAnswer = [Answer]()
         if self.guessingWord == newWord {
             self.gameStatus = .won
             for char in newWordArrayOfChars {
-                newAnswer[char] = .onPlace
+                newAnswer.append(Answer(char: char, status: .onPlace))
             }
         } else {
             for index in 0..<guessingWordArrayOfChars.count {
                 if newWordArrayOfChars[index] == guessingWordArrayOfChars[index] {
-                    newAnswer[newWordArrayOfChars[index]] = .onPlace
+                    newAnswer.append(Answer(char: newWordArrayOfChars[index], status: .onPlace))
                 } else if guessingWordArrayOfChars.contains(newWordArrayOfChars[index]) {
-                    newAnswer[newWordArrayOfChars[index]] = .exists
+                    newAnswer.append(Answer(char: newWordArrayOfChars[index], status: .exists))
                 } else {
-                    newAnswer[newWordArrayOfChars[index]] = .wrong
+                    newAnswer.append(Answer(char: newWordArrayOfChars[index], status: .wrong))
                 }
             }
         }
-        print("JOPAJOPAJOPA")
-        print(newAnswer)
         return newAnswer
     }
 }
 
 struct AnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        var view = AnswerView()
-        view.startNewGame(with: "empty")
+        var view = AnswerView(word: "empty")
         view.addAnswer("jopaa")
         view.addAnswer("emptt")
+        view.addAnswer("empty")
         return view
     }
 }

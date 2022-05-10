@@ -21,8 +21,7 @@ struct ContentView: View {
                         ErrorView(error: error, handler: viewModel.getWord)
                     case .success(let word):
                         let tabView = TabView {
-                            Text(word)
-                            //AnswerView(word)
+                            AnswerView(word: word)
                         }
                             .accentColor(Color(.systemTeal))
                         tabView
