@@ -32,7 +32,7 @@ internal struct AnswerView: View, IAnswerUI {
     var body: some View {
         List() {
             ForEach(self.answersStruct, id: \.self) { answer in
-                HStack {
+                HStack(spacing: 10) {
                     ForEach(answer, id: \.self) { element in
                         LetterView(element.char, element.status).frame(width: 50.0, height: 50.0, alignment: .center)
                     }
@@ -50,22 +50,22 @@ internal struct AnswerView: View, IAnswerUI {
     }
 
     private mutating func checkNewWord(_ newWord: String) -> [Answer] {
-        let newWordArrayOfChars = Array(arrayLiteral: newWord)
-        let guessingWordArrayOfChars = Array(arrayLiteral: self.guessingWord)
+        let newWordArrayOfChars = Array(newWord)
+        let guessingWordArrayOfChars = Array( self.guessingWord)
         var newAnswer = [Answer]()
         if self.guessingWord == newWord {
             self.gameStatus = .won
             for char in newWordArrayOfChars {
-                newAnswer.append(Answer(char: char, status: .onPlace))
+                newAnswer.append(Answer(char: String(char), status: .onPlace))
             }
         } else {
             for index in 0..<guessingWordArrayOfChars.count {
                 if newWordArrayOfChars[index] == guessingWordArrayOfChars[index] {
-                    newAnswer.append(Answer(char: newWordArrayOfChars[index], status: .onPlace))
+                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .onPlace))
                 } else if guessingWordArrayOfChars.contains(newWordArrayOfChars[index]) {
-                    newAnswer.append(Answer(char: newWordArrayOfChars[index], status: .exists))
+                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .exists))
                 } else {
-                    newAnswer.append(Answer(char: newWordArrayOfChars[index], status: .wrong))
+                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .wrong))
                 }
             }
         }
