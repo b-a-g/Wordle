@@ -55,6 +55,10 @@
 		E7D85AED28215C1300EC5D8F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AEC28215C1300EC5D8F /* SignUpView.swift */; };
 		E7D85AEF28215DFB00EC5D8F /* GoogleService-Info2.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7D85AEE28215DFB00EC5D8F /* GoogleService-Info2.plist */; };
 		E7D85AF12822C9A600EC5D8F /* Database+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AF02822C9A600EC5D8F /* Database+Extensions.swift */; };
+		E7E3DBC0282A397A008E748E /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBBF282A397A008E748E /* AnswerView.swift */; };
+		E7E3DBC2282A5FDF008E748E /* CharPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC1282A5FDF008E748E /* CharPlace.swift */; };
+		E7E3DBC4282A5FF6008E748E /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC3282A5FF6008E748E /* GameStatus.swift */; };
+		E7E3DBC6282A60AB008E748E /* LetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC5282A60AB008E748E /* LetterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +87,10 @@
 		E7D85AEC28215C1300EC5D8F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E7D85AEE28215DFB00EC5D8F /* GoogleService-Info2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info2.plist"; sourceTree = "<group>"; };
 		E7D85AF02822C9A600EC5D8F /* Database+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Extensions.swift"; sourceTree = "<group>"; };
+		E7E3DBBF282A397A008E748E /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		E7E3DBC1282A5FDF008E748E /* CharPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharPlace.swift; sourceTree = "<group>"; };
+		E7E3DBC3282A5FF6008E748E /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
+		E7E3DBC5282A60AB008E748E /* LetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +221,8 @@
 				E7D85AA92820DD7700EC5D8F /* ErrorView.swift */,
 				E7D85AE828215BAF00EC5D8F /* LoginView.swift */,
 				E7D85AEC28215C1300EC5D8F /* SignUpView.swift */,
+				E7E3DBBF282A397A008E748E /* AnswerView.swift */,
+				E7E3DBC5282A60AB008E748E /* LetterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +234,8 @@
 				E7D85AE6282159F900EC5D8F /* UserViewModel.swift */,
 				E7D85AEA28215BCB00EC5D8F /* ScreenDimensions.swift */,
 				E7D85AF02822C9A600EC5D8F /* Database+Extensions.swift */,
+				E7E3DBC1282A5FDF008E748E /* CharPlace.swift */,
+				E7E3DBC3282A5FF6008E748E /* GameStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,16 +375,20 @@
 			files = (
 				E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */,
 				E7BF92582809A03B005230C6 /* ContentView.swift in Sources */,
+				E7E3DBC0282A397A008E748E /* AnswerView.swift in Sources */,
 				E7D85AEB28215BCB00EC5D8F /* ScreenDimensions.swift in Sources */,
+				E7E3DBC4282A5FF6008E748E /* GameStatus.swift in Sources */,
 				E7D85A9B2820D0CC00EC5D8F /* GoogleSheetsService.swift in Sources */,
 				E7D85AF12822C9A600EC5D8F /* Database+Extensions.swift in Sources */,
 				E7D85AE7282159F900EC5D8F /* UserViewModel.swift in Sources */,
 				E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */,
 				E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */,
+				E7E3DBC6282A60AB008E748E /* LetterView.swift in Sources */,
 				E7D85AA02820D77200EC5D8F /* Endpoint.swift in Sources */,
 				E7D85AED28215C1300EC5D8F /* SignUpView.swift in Sources */,
 				E7D85AA22820D81B00EC5D8F /* WordsResponse.swift in Sources */,
 				E7D85AE928215BAF00EC5D8F /* LoginView.swift in Sources */,
+				E7E3DBC2282A5FDF008E748E /* CharPlace.swift in Sources */,
 				E7D85AAA2820DD7700EC5D8F /* ErrorView.swift in Sources */,
 				E7D85AA42820D82100EC5D8F /* APIError.swift in Sources */,
 			);

@@ -13,7 +13,7 @@ protocol IGameViewModel {
     func getWord()
 }
 
-class GameViewModel: ObservableObject, IGameViewModel {
+internal class GameViewModel: ObservableObject, IGameViewModel {
     @Published private(set) var state: ResultState = .loading
     @Published var alert = false
     @Published var alertMessage = ""
@@ -43,10 +43,13 @@ class GameViewModel: ObservableObject, IGameViewModel {
     }
 
     private func fetchWords(from ref: DatabaseReference) {
-      refHandle = ref.observe(DataEventType.value, with: { snapshot in
-          guard let value = snapshot.value as? String else { return }
-          self.word = value
-      })
+        ref.getData(completion:  { error, snapshot in
+          guard error == nil else {
+            print(error!.localizedDescription)
+            return;
+          }
+          let _ = snapshot.value as? String ?? "Unknown";
+        });
     }
 
     func onViewDisappear() {

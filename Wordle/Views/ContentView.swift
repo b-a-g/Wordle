@@ -22,9 +22,7 @@ struct ContentView: View {
                     case .success(let word):
                         let tabView = TabView {
                             Text(word)
-                                .tabItem {
-                                    Label("Wodle", systemImage: "arrow.counterclockwise")
-                                }
+                            //AnswerView(word)
                         }
                             .accentColor(Color(.systemTeal))
                         tabView
@@ -38,6 +36,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(isSignedIn: true, viewModel: GameViewModel())
     }
 }
