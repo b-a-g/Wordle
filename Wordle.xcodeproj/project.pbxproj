@@ -59,6 +59,8 @@
 		E7E3DBC2282A5FDF008E748E /* CharPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC1282A5FDF008E748E /* CharPlace.swift */; };
 		E7E3DBC4282A5FF6008E748E /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC3282A5FF6008E748E /* GameStatus.swift */; };
 		E7E3DBC6282A60AB008E748E /* LetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC5282A60AB008E748E /* LetterView.swift */; };
+		E7E3DBCA282BDE8B008E748E /* AnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBC9282BDE8B008E748E /* AnswerViewModel.swift */; };
+		E7E3DBCC282BE1DC008E748E /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3DBCB282BE1DC008E748E /* Answer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		E7E3DBC1282A5FDF008E748E /* CharPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharPlace.swift; sourceTree = "<group>"; };
 		E7E3DBC3282A5FF6008E748E /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
 		E7E3DBC5282A60AB008E748E /* LetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterView.swift; sourceTree = "<group>"; };
+		E7E3DBC9282BDE8B008E748E /* AnswerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewModel.swift; sourceTree = "<group>"; };
+		E7E3DBCB282BE1DC008E748E /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +240,8 @@
 				E7D85AF02822C9A600EC5D8F /* Database+Extensions.swift */,
 				E7E3DBC1282A5FDF008E748E /* CharPlace.swift */,
 				E7E3DBC3282A5FF6008E748E /* GameStatus.swift */,
+				E7E3DBC9282BDE8B008E748E /* AnswerViewModel.swift */,
+				E7E3DBCB282BE1DC008E748E /* Answer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -373,12 +379,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7E3DBCA282BDE8B008E748E /* AnswerViewModel.swift in Sources */,
 				E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */,
 				E7BF92582809A03B005230C6 /* ContentView.swift in Sources */,
 				E7E3DBC0282A397A008E748E /* AnswerView.swift in Sources */,
 				E7D85AEB28215BCB00EC5D8F /* ScreenDimensions.swift in Sources */,
 				E7E3DBC4282A5FF6008E748E /* GameStatus.swift in Sources */,
 				E7D85A9B2820D0CC00EC5D8F /* GoogleSheetsService.swift in Sources */,
+				E7E3DBCC282BE1DC008E748E /* Answer.swift in Sources */,
 				E7D85AF12822C9A600EC5D8F /* Database+Extensions.swift in Sources */,
 				E7D85AE7282159F900EC5D8F /* UserViewModel.swift in Sources */,
 				E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */,

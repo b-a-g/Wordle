@@ -7,78 +7,64 @@
 
 import SwiftUI
 
-public protocol IAnswerUI {
-    var gameStatus: GameStatus { get }
-    mutating func addAnswer(_ answer: String)
-}
+internal struct AnswerView: View {
 
-struct Answer: Hashable {
-    let char: String
-    let status: CharPlace
-}
+    @State var answer: String = ""
 
-internal struct AnswerView: View, IAnswerUI {
-    private var guessingWord: String = ""
-    internal var gameStatus: GameStatus = .inProgress
+    @ObservedObject var answerViewModel: AnswerViewModel
+    @State var guessingWord: String
 
-    private var answersStruct = [[Answer]]()
-
-    public init(word: String) {
-        self.guessingWord = word
-        self.gameStatus = .inProgress
-        self.answersStruct.removeAll()
+    internal init(word: String) {
+        self.guessingWord = word.lowercased()
+        self.answerViewModel = AnswerViewModel()
+        self.answerViewModel.setGuessingWord(guessingWord)
     }
 
     var body: some View {
-        List() {
-            ForEach(self.answersStruct, id: \.self) { answer in
-                HStack(spacing: 10) {
-                    ForEach(answer, id: \.self) { element in
-                        LetterView(element.char, element.status).frame(width: 50.0, height: 50.0, alignment: .center)
+        ZStack {
+            List() {
+                ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
+                    HStack(spacing: 10) {
+                        ForEach(answer, id: \.self) { element in
+                            LetterView(element.char, element.status)
+                                .frame(width: 50.0, height: 50.0, alignment: .center)
+                        }
                     }
                 }
             }
-        }
-    }
-
-    internal mutating func addAnswer(_ answer: String) {
-        let newAnswer = self.checkNewWord(answer)
-        self.answersStruct.append(newAnswer)
-        if self.answersStruct.count == 5  && self.gameStatus != .won {
-            self.gameStatus = .completed
-        }
-    }
-
-    private mutating func checkNewWord(_ newWord: String) -> [Answer] {
-        let newWordArrayOfChars = Array(newWord)
-        let guessingWordArrayOfChars = Array( self.guessingWord)
-        var newAnswer = [Answer]()
-        if self.guessingWord == newWord {
-            self.gameStatus = .won
-            for char in newWordArrayOfChars {
-                newAnswer.append(Answer(char: String(char), status: .onPlace))
-            }
-        } else {
-            for index in 0..<guessingWordArrayOfChars.count {
-                if newWordArrayOfChars[index] == guessingWordArrayOfChars[index] {
-                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .onPlace))
-                } else if guessingWordArrayOfChars.contains(newWordArrayOfChars[index]) {
-                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .exists))
-                } else {
-                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .wrong))
+            List() {
+                ForEach(0..<6) { _ in
+                    HStack(spacing: 10) {
+                        ForEach(0..<5) { _ in
+                            Color.gray.scaledToFit()
+                                .frame(width: 50.0, height: 50.0, alignment: .center)
+                        }
+                    }
+                }
+                HStack(spacing: 10) {
+                    TextField("Enter your word", text: $answer)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                    Button("Post") {
+                        if answer.count == 5 {
+                            self.answerViewModel.addAnswer(answer)
+                            answer = ""
+                        }
+                    }
                 }
             }
+            .opacity(0.3)
         }
-        return newAnswer
     }
 }
 
 struct AnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        var view = AnswerView(word: "empty")
-        view.addAnswer("jopaa")
-        view.addAnswer("emptt")
-        view.addAnswer("empty")
+        let view = AnswerView(word: "empty")
+        view.answerViewModel.addAnswer("jopaa")
+        view.answerViewModel.addAnswer("emptt")
+        view.answerViewModel.addAnswer("empty")
+        view.answerViewModel.addAnswer("emqty")
         return view
     }
 }

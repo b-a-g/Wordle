@@ -39,7 +39,7 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         self.state = .loading
         let wordRef = ref.child("words")
         fetchWords(from: wordRef)
-        self.state = .success(content: self.word.isEmpty ? "empty": self.word)
+        self.state = .success(content: self.word.isEmpty ? "ИГРАЙ": self.word)
     }
 
     private func fetchWords(from ref: DatabaseReference) {
