@@ -8,10 +8,10 @@
 import SwiftUI
 
 internal struct LetterView: View {
-    internal var letter: String
+    internal var letter: Character
     internal var state: CharPlace
 
-    internal init(_ letter: String, _ state: CharPlace) {
+    internal init(_ letter: Character, _ state: CharPlace) {
         self.letter = letter
         self.state = state
     }
@@ -26,7 +26,7 @@ internal struct LetterView: View {
                 case .wrong:
                     Color.white.scaledToFit()
             }
-            Text(self.letter).scaledToFit()
+            Text(String(self.letter)).scaledToFit()
         }
     }
 }

@@ -6,6 +6,6 @@
 //
 
 public struct Answer: Hashable {
-    let char: String
+    let char: Character
     let status: CharPlace
 }

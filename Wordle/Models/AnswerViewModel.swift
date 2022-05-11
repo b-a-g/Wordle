@@ -29,22 +29,22 @@ public class AnswerViewModel: ObservableObject {
     }
 
     private func checkNewWord(_ newWord: String) -> [Answer] {
-        let newWordArrayOfChars = Array(newWord)
-        let guessingWordArrayOfChars = Array( self.guessingWord)
+        let newWordArr = Array(newWord)
+        let guessWordArr = Array( self.guessingWord)
         var newAnswer = [Answer]()
         if self.guessingWord == newWord {
             self.gameStatus = .won
-            for char in newWordArrayOfChars {
-                newAnswer.append(Answer(char: String(char), status: .onPlace))
+            for char in newWordArr {
+                newAnswer.append(Answer(char: char, status: .onPlace))
             }
         } else {
-            for index in 0..<guessingWordArrayOfChars.count {
-                if newWordArrayOfChars[index] == guessingWordArrayOfChars[index] {
-                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .onPlace))
-                } else if guessingWordArrayOfChars.contains(newWordArrayOfChars[index]) {
-                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .exists))
+            for index in 0..<guessWordArr.count {
+                if newWordArr[index] == guessWordArr[index] {
+                    newAnswer.append(Answer(char: newWordArr[index], status: .onPlace))
+                } else if guessWordArr.contains(newWordArr[index]) {
+                    newAnswer.append(Answer(char: newWordArr[index], status: .exists))
                 } else {
-                    newAnswer.append(Answer(char: String(newWordArrayOfChars[index]), status: .wrong))
+                    newAnswer.append(Answer(char: newWordArr[index], status: .wrong))
                 }
             }
         }
