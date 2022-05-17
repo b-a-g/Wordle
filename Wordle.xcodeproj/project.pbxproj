@@ -14,10 +14,7 @@
 		E7BF925D2809A03F005230C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BF925C2809A03F005230C6 /* Preview Assets.xcassets */; };
 		E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85A942820C88200EC5D8F /* GameViewModel.swift */; };
 		E7D85A992820CFD800EC5D8F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = E7D85A982820CFD800EC5D8F /* GoogleSignIn */; };
-		E7D85A9B2820D0CC00EC5D8F /* GoogleSheetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85A9A2820D0CC00EC5D8F /* GoogleSheetsService.swift */; };
 		E7D85A9D2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7D85A9C2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist */; };
-		E7D85AA02820D77200EC5D8F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85A9F2820D77200EC5D8F /* Endpoint.swift */; };
-		E7D85AA22820D81B00EC5D8F /* WordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA12820D81B00EC5D8F /* WordsResponse.swift */; };
 		E7D85AA42820D82100EC5D8F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA32820D82100EC5D8F /* APIError.swift */; };
 		E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA62820DAB700EC5D8F /* ResultState.swift */; };
 		E7D85AAA2820DD7700EC5D8F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D85AA92820DD7700EC5D8F /* ErrorView.swift */; };
@@ -74,11 +71,8 @@
 		E7BF925C2809A03F005230C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E7D85A942820C88200EC5D8F /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		E7D85A962820CD7E00EC5D8F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E7D85A9A2820D0CC00EC5D8F /* GoogleSheetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSheetsService.swift; sourceTree = "<group>"; };
 		E7D85A9C2820D30000EC5D8F /* client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "client_770346214819-5clkai2sjkj5sibqvjgc78lkl3t848f1.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		E7D85A9E2820D3B000EC5D8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7D85A9F2820D77200EC5D8F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		E7D85AA12820D81B00EC5D8F /* WordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsResponse.swift; sourceTree = "<group>"; };
 		E7D85AA32820D82100EC5D8F /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		E7D85AA62820DAB700EC5D8F /* ResultState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultState.swift; sourceTree = "<group>"; };
 		E7D85AA92820DD7700EC5D8F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -201,10 +195,7 @@
 		E7D85AA52820D84100EC5D8F /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E7D85A9A2820D0CC00EC5D8F /* GoogleSheetsService.swift */,
-				E7D85AA12820D81B00EC5D8F /* WordsResponse.swift */,
 				E7D85AA32820D82100EC5D8F /* APIError.swift */,
-				E7D85A9F2820D77200EC5D8F /* Endpoint.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -385,16 +376,13 @@
 				E7E3DBC0282A397A008E748E /* AnswerView.swift in Sources */,
 				E7D85AEB28215BCB00EC5D8F /* ScreenDimensions.swift in Sources */,
 				E7E3DBC4282A5FF6008E748E /* GameStatus.swift in Sources */,
-				E7D85A9B2820D0CC00EC5D8F /* GoogleSheetsService.swift in Sources */,
 				E7E3DBCC282BE1DC008E748E /* Answer.swift in Sources */,
 				E7D85AF12822C9A600EC5D8F /* Database+Extensions.swift in Sources */,
 				E7D85AE7282159F900EC5D8F /* UserViewModel.swift in Sources */,
 				E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */,
 				E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */,
 				E7E3DBC6282A60AB008E748E /* LetterView.swift in Sources */,
-				E7D85AA02820D77200EC5D8F /* Endpoint.swift in Sources */,
 				E7D85AED28215C1300EC5D8F /* SignUpView.swift in Sources */,
-				E7D85AA22820D81B00EC5D8F /* WordsResponse.swift in Sources */,
 				E7D85AE928215BAF00EC5D8F /* LoginView.swift in Sources */,
 				E7E3DBC2282A5FDF008E748E /* CharPlace.swift in Sources */,
 				E7D85AAA2820DD7700EC5D8F /* ErrorView.swift in Sources */,
