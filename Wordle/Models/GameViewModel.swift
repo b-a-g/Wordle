@@ -23,12 +23,12 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
     private var refHandle: DatabaseHandle?
 
     private func showAlertMessage(message: String) {
-      alertMessage = message
-      alert.toggle()
+        alertMessage = message
+        alert.toggle()
     }
 
     private func getCurrentUserID() -> String? {
-      return Auth.auth().currentUser?.uid
+        return Auth.auth().currentUser?.uid
     }
 
     init() {
@@ -38,21 +38,30 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
     func getWord() {
         self.state = .loading
         let wordRef = ref.child("words")
-        fetchWords(from: wordRef)
-        self.state = .success(content: self.word.isEmpty ? "ИГРАЙ": self.word)
+        self.fetchWords(from: wordRef)
     }
 
     private func fetchWords(from ref: DatabaseReference) {
         ref.getData(completion:  { error, snapshot in
-          guard error == nil else {
-            print(error!.localizedDescription)
-            return;
-          }
-          let _ = snapshot.value as? String ?? "Unknown";
+            guard error == nil else {
+                print(error!.localizedDescription)
+                self.state = .failed(error: error!)
+                return;
+            }
+            if let words = (snapshot.value as? [String?]) {
+                var resultWords = [String]()
+                for resultWord in words {
+                    if let newWord = resultWord {
+                        resultWords.append(newWord)
+                    }
+                }
+                self.word = resultWords[Int.random(in: 0..<resultWords.count)]
+                self.state = .success(content: self.word)
+            }
         });
     }
 
     func onViewDisappear() {
-      ref.removeAllObservers()
+        ref.removeAllObservers()
     }
 }
