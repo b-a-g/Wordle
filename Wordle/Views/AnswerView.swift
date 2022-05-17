@@ -27,7 +27,6 @@ internal struct AnswerView: View {
                     HStack(spacing: 10) {
                         ForEach(answer, id: \.self) { element in
                             LetterView(element.char, element.status)
-                                .frame(width: 50.0, height: 50.0, alignment: .center)
                         }
                     }
                 }
@@ -37,7 +36,6 @@ internal struct AnswerView: View {
                     HStack(spacing: 10) {
                         ForEach(0..<5) { _ in
                             Color.gray.scaledToFit()
-                                .frame(width: 50.0, height: 50.0, alignment: .center)
                         }
                     }
                 }
