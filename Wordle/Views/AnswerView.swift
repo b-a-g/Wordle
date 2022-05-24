@@ -29,6 +29,8 @@ internal struct AnswerView: View {
         self.answerViewModel.setGuessingWord(guessingWord)
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
+        
+        self.answerFieldFocused = .answer
     }
     
    
@@ -71,7 +73,11 @@ internal struct AnswerView: View {
                 .opacity(0.3)
                 .frame(width: 600, alignment: .center)
             }
-        }.fullBackground(imageName: "Wordle_screen-3")
+        }
+        .fullBackground(imageName: "Wordle_screen-3")
+        .onAppear {
+            self.answerFieldFocused = .answer
+        }
         
     }
     
