@@ -10,6 +10,8 @@ import SwiftUI
 internal struct AnswerView: View {
 
     @State var answer: String = ""
+
+    private let textlimit = 5
     
     enum Field: Hashable {
             case answer
@@ -59,6 +61,11 @@ internal struct AnswerView: View {
                             .autocapitalization(.none)
                             .font(.largeTitle)
                             .focused($answerFieldFocused, equals: .answer)
+                            .onChange(of: self.answer, perform: { value in
+                                if value.count > self.textlimit {
+                                    self.answer = String(value.prefix(self.textlimit))
+                                  }
+                              })
                     }
                 }
                 .opacity(0.3)
