@@ -10,6 +10,13 @@ import SwiftUI
 internal struct AnswerView: View {
 
     @State var answer: String = ""
+    
+    enum Field: Hashable {
+            case answer
+        case nothing
+    }
+    
+    @FocusState private var answerFieldFocused: Field?
 
     @ObservedObject var answerViewModel: AnswerViewModel
     @State var guessingWord: String
@@ -18,41 +25,66 @@ internal struct AnswerView: View {
         self.guessingWord = word.lowercased()
         self.answerViewModel = AnswerViewModel()
         self.answerViewModel.setGuessingWord(guessingWord)
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
     }
+    
+   
 
     var body: some View {
-        ZStack {
-            List() {
-                ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
+        VStack {
+            Spacer(minLength: 200)
+            ZStack {
+                List() {
+                    ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
+                        HStack(spacing: 10) {
+                            ForEach(answer, id: \.self) { element in
+                                LetterView(element.char, element.status)
+                            }
+                        }
+                    }
+                }
+                .frame(width: 600, alignment: .center)
+                List() {
+                    ForEach(0..<6) { _ in
+                        HStack(spacing: 10) {
+                            ForEach(0..<5) { _ in
+                                Color.gray.scaledToFit()
+                            }
+                        }
+                    }
                     HStack(spacing: 10) {
-                        ForEach(answer, id: \.self) { element in
-                            LetterView(element.char, element.status)
-                        }
+                        TextField("Введи слово", text: $answer, onCommit: self.onCommit)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .font(.largeTitle)
+                            .focused($answerFieldFocused, equals: .answer)
                     }
                 }
+                .opacity(0.3)
+                .frame(width: 600, alignment: .center)
             }
-            List() {
-                ForEach(0..<6) { _ in
-                    HStack(spacing: 10) {
-                        ForEach(0..<5) { _ in
-                            Color.gray.scaledToFit()
-                        }
-                    }
-                }
-                HStack(spacing: 10) {
-                    TextField("Enter your word", text: $answer)
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                    Button("Post") {
-                        if answer.count == 5 {
-                            self.answerViewModel.addAnswer(answer)
-                            answer = ""
-                        }
-                    }
-                }
-            }
-            .opacity(0.3)
+        }.fullBackground(imageName: "Wordle_screen-3")
+        
+    }
+    
+    func onCommit() {
+        if answer.count == 5 {
+            self.answerViewModel.addAnswer(answer)
+            answer = ""
         }
+        self.answerFieldFocused = .answer
+    }
+}
+
+public extension View {
+    func fullBackground(imageName: String) -> some View {
+       return background(
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+       )
     }
 }
 
