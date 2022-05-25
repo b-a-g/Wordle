@@ -4,7 +4,7 @@
 //
 //  Created by Александр Беляев on 03.05.2022.
 //
-
+import SwiftUI
 import Combine
 import FirebaseAuth
 import FirebaseDatabase
@@ -22,20 +22,16 @@ struct Player
 }
 
 internal class GameViewModel: ObservableObject, IGameViewModel {
+    
+    public var needLogoutHandler: (() -> Void)? = nil
+    @AppStorage("isSignedIn") var isSignedIn = true
+    
     @Published private(set) var state: ResultState = .loading
-    @Published var alert = false
-    @Published var alertMessage = ""
-    @Published var word = ""
 
     private var ref = Database.root
     private var refHandle: DatabaseHandle?
     
     private var currentPlayer: Player? = nil
-
-    private func showAlertMessage(message: String) {
-        alertMessage = message
-        alert.toggle()
-    }
 
     private func getCurrentUserID() -> String? {
         return Auth.auth().currentUser?.uid
@@ -66,7 +62,7 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
             if let rawUser = snapshot.value as? NSDictionary,
                let score = rawUser["score"] as? Int,
                 let dateTime = rawUser["lastLoginDate"] as? TimeInterval {
-                let name = rawUser["name"] as? String
+                let name = rawUser["username"] as? String
                 self.currentPlayer = Player(id: id,
                                             name: name,
                                             scores: score,
@@ -98,8 +94,32 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         completion()
     }
     
-    func setWordUsed(word: String) {
-        self.ref.child("used/\(word)/used").setValue(1)
+    func setCurrentWord(word: String) {
+        self.ref.child("current/word").setValue(word)
+    }
+    
+    func getWordOrFetchIt(completion: @escaping(_ word: String) -> Void) {
+        self.getCurrentWord { [weak self] rawWord in
+            if let rawWord = rawWord {
+                completion(rawWord)
+            }
+            else {
+                self?.fetchWords(completion: completion)
+            }
+        }
+        
+    }
+    func getCurrentWord(completion: @escaping(_ word: String?) -> Void) {
+        let resultsRef = ref.child("current/word")
+        resultsRef.getData { error, snapshot in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                self.state = .failed(error: error!)
+                completion(nil)
+                return;
+            }
+            completion(snapshot.value as? String)
+        }
     }
     
     func update(score: Int) {
@@ -107,6 +127,13 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
             return
         }
         self.ref.child("users/\(id)/score").setValue(score)
+    }
+    
+    func updateLastLogin() {
+        guard let id = self.getCurrentUserID() else {
+            return
+        }
+        self.ref.child("users/\(id)/lastLoginDate").setValue(Date().timeIntervalSince1970)
     }
 
     func getWord() {
@@ -116,15 +143,18 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         }
         let allowUser = UserController.allowUser(lastLoginDate: player.lastGameDate)
         if allowUser {
-            self.fetchWords(from: ref.child("words"))
+            self.getWordOrFetchIt() { [weak self] word in
+                self?.wordFetched(word: word)
+            }
         }
         else {
-            self.exit()
+            self.logout()
         }
         
     }
 
-    private func fetchWords(from ref: DatabaseReference) {
+    private func fetchWords(completion: @escaping(_ word: String) -> Void) {
+        let ref = ref.child("words")
         ref.getData(completion:  { error, snapshot in
             guard error == nil else {
                 print(error!.localizedDescription)
@@ -139,7 +169,8 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
                     }
                 }
                 let word = resultWords[Int.random(in: 0..<resultWords.count)]
-                self.wordFetched(word: word)
+                self.setCurrentWord(word: word)
+                completion(word)
             }
         });
     }
@@ -159,12 +190,18 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         vm.succesCompleteHandler = { [weak self] points in
             self?.goNext(points)
         }
-        self.word = word
         self.state = .success(vm: vm)
     }
     
     func exit() {
-        //Сбро полтзовтеля и отправка в базу последнее время логина
+        self.updateLastLogin()
+        self.logout()
+    }
+    
+    func logout() {
+        self.isSignedIn = false
+        self.state = .loading
+        self.currentPlayer = nil
     }
     
     func goNext(_ points: Int) {
@@ -177,7 +214,13 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
                                     scores: curr,
                                     lastGameDate: player.lastGameDate)
         self.update(score: curr)
-        self.getWord()
+        self.updateWord {
+            self.getWord()
+        }
+    }
+    
+    func updateWord(completion:@escaping (() -> Void)) {
+        self.fetchWords(completion: { _ in completion() })
     }
 
     func onViewDisappear() {

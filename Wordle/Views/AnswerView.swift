@@ -77,10 +77,13 @@ internal struct AnswerView: View {
         .onAppear {
             self.answerFieldFocused = .answer
         }
-        .alert("Подравляем, ты отгадал слово, переходим к следующему", isPresented: $answerViewModel.needShowWonAlert ) {
+        .alert("Поpдравляем, ты отгадал слово! \n переходим к следующему", isPresented: $answerViewModel.needShowWonAlert ) {
             Button("Переходим к следующему", role: .cancel, action: self.startNewGame)
         }
-        .alert("К сожалению ты не смогу отгадать слово, приходи еще раз!", isPresented: $answerViewModel.needShowFailAlert ) {
+        .alert("Такое слово уже есть", isPresented: $answerViewModel.needShowRepeatedAlert ) {
+            Button("OK", role: .cancel, action: {})
+        }
+        .alert("К сожалению ты не смог отгадать слово. \n приходи еще раз!", isPresented: $answerViewModel.needShowFailAlert ) {
             Button("Пока пока", role: .cancel, action: self.onExit)
         }
         

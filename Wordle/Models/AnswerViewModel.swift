@@ -15,6 +15,7 @@ public class AnswerViewModel: ObservableObject {
     
     @Published var needShowWonAlert: Bool = false
     @Published var needShowFailAlert: Bool = false
+    @Published var needShowRepeatedAlert: Bool = false
     
     @Published var nameAndScoreString: String = ""
     
@@ -24,11 +25,11 @@ public class AnswerViewModel: ObservableObject {
     
     private var existedAnswers = [String]()
     
-    private var score: Int = 0
+    @Published var score: Int = 0
     
     public func setCurrnetNameAndScore(name: String?, score: Int) {
         let name = name ?? "Участник"
-        self.nameAndScoreString = "Привет \(name), сейчас у тебя \(score) баллов, удачи в этом слове :)"
+        self.nameAndScoreString = "Привет \(name), сейчас у тебя \(score) балл, удачи в этом слове :)"
     }
 
     public func setGuessingWord(_ guessingWord: String) {
@@ -41,7 +42,7 @@ public class AnswerViewModel: ObservableObject {
                 let newAnswer = self.checkNewWord(answer.lowercased())
                 self.answersStruct.append(newAnswer)
             } else {
-            // сказать пользователю что такое слово он уже вводил
+                self.needShowRepeatedAlert = true
             }
         }
 
@@ -60,11 +61,13 @@ public class AnswerViewModel: ObservableObject {
         
         if self.guessingWord == newWord {
             self.gameStatus = .won
-            self.needShowWonAlert = true
+            
             currScore += ScoreController.winScore(by: self.existedAnswers.count + 1)
             for char in newWordArr {
                 newAnswer.append(Answer(char: char, status: .onPlace))
             }
+            
+            self.needShowWonAlert = true
         } else {
             for index in 0..<guessWordArr.count {
                 if newWordArr[index] == guessWordArr[index] {
