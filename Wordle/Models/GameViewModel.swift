@@ -17,7 +17,8 @@ struct Player
 {
     let id: String
     let name: String?
-    var scores: Int
+    let scores: Int
+    let lastGameDate: Date
 }
 
 internal class GameViewModel: ObservableObject, IGameViewModel {
@@ -63,11 +64,13 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
                 return;
             }
             if let rawUser = snapshot.value as? NSDictionary,
-               let score = rawUser["score"] as? Int {
+               let score = rawUser["score"] as? Int,
+                let dateTime = rawUser["lastLoginDate"] as? TimeInterval {
                 let name = rawUser["name"] as? String
                 self.currentPlayer = Player(id: id,
                                             name: name,
-                                            scores: score)
+                                            scores: score,
+                                            lastGameDate: Date(timeIntervalSince1970: dateTime))
                 completion()
             } else {
                 self.createUser(completion: completion)
@@ -83,12 +86,15 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         }
         
         let name = Auth.auth().currentUser?.displayName ?? Auth.auth().currentUser?.email
-        self.ref.child("users/\(id)/score").setValue(0)
+        let date = Date()
+        let score = 0
+        self.ref.child("users/\(id)/score").setValue(score)
         self.ref.child("users/\(id)/username").setValue(name)
-        
+        self.ref.child("users/\(id)/lastLoginDate").setValue(date.timeIntervalSince1970)
         self.currentPlayer = Player(id: id,
                                     name: name,
-                                    scores: 0)
+                                    scores: score,
+                                    lastGameDate: date)
         completion()
     }
     
@@ -105,8 +111,17 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
 
     func getWord() {
         self.state = .loading
-        let wordRef = ref.child("words")
-        self.fetchWords(from: wordRef)
+        guard let player = self.currentPlayer else {
+            return
+        }
+        let allowUser = UserController.allowUser(lastLoginDate: player.lastGameDate)
+        if allowUser {
+            self.fetchWords(from: ref.child("words"))
+        }
+        else {
+            self.exit()
+        }
+        
     }
 
     private func fetchWords(from ref: DatabaseReference) {
@@ -159,7 +174,8 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         let curr = player.scores + points
         self.currentPlayer = Player(id: player.id,
                                     name: player.name,
-                                    scores: curr)
+                                    scores: curr,
+                                    lastGameDate: player.lastGameDate)
         self.update(score: curr)
         self.getWord()
     }

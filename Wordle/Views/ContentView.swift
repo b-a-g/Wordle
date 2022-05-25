@@ -20,11 +20,7 @@ struct ContentView: View {
                     case .failed(let error):
                         ErrorView(error: error, handler: viewModel.getWord)
                     case .success(let vm):
-                        let tabView = TabView {
-                            AnswerView(vm: vm)
-                        }
-                            .accentColor(Color(.systemTeal))
-                        tabView
+                        AnswerView(vm: vm)
                 }
             }
         } else {
