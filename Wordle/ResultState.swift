@@ -9,6 +9,6 @@ import Foundation
 
 enum ResultState {
     case loading
-    case success(content: String)
+    case success(vm: AnswerViewModel)
     case failed(error: Error)
 }

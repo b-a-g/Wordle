@@ -21,12 +21,10 @@ internal struct AnswerView: View {
     @FocusState private var answerFieldFocused: Field?
 
     @ObservedObject var answerViewModel: AnswerViewModel
-    @State var guessingWord: String
 
-    internal init(word: String) {
-        self.guessingWord = word.lowercased()
-        self.answerViewModel = AnswerViewModel()
-        self.answerViewModel.setGuessingWord(guessingWord)
+    internal init(vm: AnswerViewModel) {
+        self.answerViewModel = vm
+        
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
         
@@ -38,6 +36,7 @@ internal struct AnswerView: View {
     var body: some View {
         VStack {
             Spacer(minLength: 200)
+            Text(self.answerViewModel.nameAndScoreString).font(.largeTitle)
             ZStack {
                 List() {
                     ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
@@ -78,7 +77,21 @@ internal struct AnswerView: View {
         .onAppear {
             self.answerFieldFocused = .answer
         }
+        .alert("Подравляем, ты отгадал слово, переходим к следующему", isPresented: $answerViewModel.needShowWonAlert ) {
+            Button("Переходим к следующему", role: .cancel, action: self.startNewGame)
+        }
+        .alert("К сожалению ты не смогу отгадать слово, приходи еще раз!", isPresented: $answerViewModel.needShowFailAlert ) {
+            Button("Пока пока", role: .cancel, action: self.onExit)
+        }
         
+    }
+    
+    func startNewGame() {
+        self.answerViewModel.goNextWord()
+    }
+    
+    func onExit() {
+        self.answerViewModel.exit()
     }
     
     func onCommit() {
@@ -103,7 +116,9 @@ public extension View {
 
 struct AnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        let view = AnswerView(word: "empty")
+        let vm = AnswerViewModel()
+        vm.setGuessingWord("empty")
+        let view = AnswerView(vm: vm)
         view.answerViewModel.addAnswer("jopaa")
         view.answerViewModel.addAnswer("emptt")
         view.answerViewModel.addAnswer("empty")

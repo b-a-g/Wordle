@@ -19,9 +19,9 @@ struct ContentView: View {
                         ProgressView()
                     case .failed(let error):
                         ErrorView(error: error, handler: viewModel.getWord)
-                    case .success(let word):
+                    case .success(let vm):
                         let tabView = TabView {
-                            AnswerView(word: word)
+                            AnswerView(vm: vm)
                         }
                             .accentColor(Color(.systemTeal))
                         tabView

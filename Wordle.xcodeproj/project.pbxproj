@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		99393BDD0F60E9E321075EBC /* libPods-Wordle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */; };
+		C713C80A283E6055005F770E /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C809283E6055005F770E /* ScoreController.swift */; };
 		E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF92552809A03B005230C6 /* WordleApp.swift */; };
 		E7BF92582809A03B005230C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF92572809A03B005230C6 /* ContentView.swift */; };
 		E7BF925A2809A03F005230C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BF92592809A03F005230C6 /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wordle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EAD6AB36C334016513DEA5 /* Pods-Wordle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.release.xcconfig"; path = "Target Support Files/Pods-Wordle/Pods-Wordle.release.xcconfig"; sourceTree = "<group>"; };
 		C713C806283C725A005F770E /* Wordle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wordle.entitlements; sourceTree = "<group>"; };
+		C713C809283E6055005F770E /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		E7BF92522809A03B005230C6 /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BF92552809A03B005230C6 /* WordleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleApp.swift; sourceTree = "<group>"; };
 		E7BF92572809A03B005230C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				E7E3DBC3282A5FF6008E748E /* GameStatus.swift */,
 				E7E3DBC9282BDE8B008E748E /* AnswerViewModel.swift */,
 				E7E3DBCB282BE1DC008E748E /* Answer.swift */,
+				C713C809283E6055005F770E /* ScoreController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			files = (
 				E7E3DBCA282BDE8B008E748E /* AnswerViewModel.swift in Sources */,
 				E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */,
+				C713C80A283E6055005F770E /* ScoreController.swift in Sources */,
 				E7BF92582809A03B005230C6 /* ContentView.swift in Sources */,
 				E7E3DBC0282A397A008E748E /* AnswerView.swift in Sources */,
 				E7D85AEB28215BCB00EC5D8F /* ScreenDimensions.swift in Sources */,
