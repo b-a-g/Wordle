@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct LoginView: View {
-  @StateObject var user = UserViewModel()
+    @ObservedObject var user: UserViewModel
   @State private var signUpViewPresented = false
+
+    init(completion: @escaping (() -> Void)) {
+        let vm = UserViewModel()
+        vm.completion = completion
+        self.user = vm
+    }
 
   var body: some View {
     let loginView = VStack {
@@ -129,6 +135,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
   static var previews: some View {
-    LoginView(user: user)
+      LoginView(completion: {})
   }
 }

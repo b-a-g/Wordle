@@ -14,6 +14,8 @@ class UserViewModel: ObservableObject {
     @Published var password = ""
     @Published var alert = false
     @Published var alertMessage = ""
+    
+    public var completion: (() -> Void)? = nil
 
     private func showAlertMessage(message: String) {
         alertMessage = message
@@ -34,6 +36,7 @@ class UserViewModel: ObservableObject {
             } else if let result = result {
                 self.email = result.user.email ?? ""
                 self.isSignedIn = true
+                self.completion?()
             }
         }
     }

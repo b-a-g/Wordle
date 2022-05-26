@@ -24,7 +24,7 @@ struct ContentView: View {
                 }
             }
         } else {
-            LoginView()
+            LoginView(completion: { self.viewModel.newGame() })
         }
     }
 }

@@ -23,7 +23,6 @@ struct Player
 
 internal class GameViewModel: ObservableObject, IGameViewModel {
     
-    public var needLogoutHandler: (() -> Void)? = nil
     @AppStorage("isSignedIn") var isSignedIn = true
     
     @Published private(set) var state: ResultState = .loading
@@ -38,7 +37,9 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
     }
 
     init() {
-        self.newGame()
+        if self.getCurrentUserID() != nil {
+            self.newGame()
+        }
     }
     
     func newGame() {
@@ -202,6 +203,14 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         self.isSignedIn = false
         self.state = .loading
         self.currentPlayer = nil
+        do
+        {
+            try Auth.auth().signOut()
+        }
+        catch
+        {
+            print(error)
+        }
     }
     
     func goNext(_ points: Int) {
