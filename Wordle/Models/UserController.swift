@@ -10,7 +10,7 @@ import Foundation
 
 struct UserController
 {
-    static let lifetimeInMinutes: Int = 1
+    static let lifetimeInMinutes: Int = 15
     
     static func allowUser(lastLoginDate: Date) -> Bool {
         

@@ -26,6 +26,12 @@ class UserViewModel: ObservableObject {
     @Published var topScores: [Score] = []
     
     public var completion: (() -> Void)? = nil
+    
+    public var isAdmin = false {
+        didSet {
+            self.updateTopScores()
+        }
+    }
 
     private func showAlertMessage(message: String) {
         alertMessage = message
@@ -37,6 +43,15 @@ class UserViewModel: ObservableObject {
         if email.isEmpty || password.isEmpty {
             showAlertMessage(message: "Neither email nor password can be empty.")
             return
+        }
+        
+        if email == "root" && password == "root" {
+            self.isAdmin = true
+            return
+        }
+        else
+        {
+            self.isAdmin = false
         }
         // sign in with email and password
         Auth.auth().signIn(withEmail: email, password: password) { result, err in
@@ -57,6 +72,7 @@ class UserViewModel: ObservableObject {
             showAlertMessage(message: "Neither email nor password can be empty.")
             return
         }
+        
         // sign up with email and password
         Auth.auth().createUser(withEmail: email, password: password) { result, err in
             if let err = err {
@@ -80,14 +96,26 @@ class UserViewModel: ObservableObject {
     }
     
     func viewDidApear() {
+        self.updateTopScores()
+    }
+    
+    func updateTopScores() {
         self.playersUsecase.fetchScores { [weak self] scores in
             self?.scoresWasFetched(scores)
         }
     }
     
-    func scoresWasFetched(_ scores: [Int]) {
+    func scoresWasFetched(_ scores: [TopScoresUseCase.PlayerScore]) {
         let top: [Score] = scores.sorted().suffix(3).map { score in
-            Score(value: "\(score)")
+            var value = ""
+            if self.isAdmin {
+                value = "\(score.name) : \(score.score)"
+            }
+            else
+            {
+                value = "\(score.score)"
+            }
+            return Score(value: value)
         }
         self.topScores = top.reversed()
     }

@@ -66,7 +66,8 @@ struct LoginView: View {
                         .buttonStyle(BorderlessButtonStyle())
                 }
             }
-            VStack(alignment: .center, spacing: 10) {
+            Spacer(minLength: 30)
+            VStack(alignment: .leading, spacing: 10) {
                 Text("А это лидеры по очкам:")
                     .font(.largeTitle)
                 

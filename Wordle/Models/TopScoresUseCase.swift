@@ -10,8 +10,20 @@ import FirebaseDatabase
 
 class TopScoresUseCase
 {
+    struct PlayerScore: Comparable
+    {
+        let score: Int
+        let name: String
+        
+        static func < (lhs: PlayerScore, rhs: PlayerScore) -> Bool {
+            if lhs.score == rhs.score {
+                return lhs.name < rhs.name
+            }
+            return lhs.score < rhs.score
+        }
+    }
 
-    func fetchScores(completion: @escaping ([Int]) -> Void) {
+    func fetchScores(completion: @escaping ([PlayerScore]) -> Void) {
         let ref = Database.root
         let resultsRef = ref.child("users")
         resultsRef.getData { error, snapshot in
@@ -20,12 +32,14 @@ class TopScoresUseCase
                 completion([])
                 return;
             }
-            var scores = [Int]()
+            var scores = [PlayerScore]()
             if let rawUsers = snapshot.value as? NSDictionary {
                 for val in rawUsers {
                     if let userVal = val.value as? NSDictionary,
-                       let score = userVal["score"] as? Int {
-                        scores.append(score)
+                       let score = userVal["score"] as? Int ,
+                        let name = userVal["username"] as? String {
+                        let pl = PlayerScore(score: score, name: name)
+                        scores.append(pl)
                     }
                 }
             }
