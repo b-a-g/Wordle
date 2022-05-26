@@ -9,11 +9,21 @@ import SwiftUI
 import FirebaseAuth
 
 class UserViewModel: ObservableObject {
+    
     @AppStorage("isSignedIn") var isSignedIn = false
     @Published var email = ""
     @Published var password = ""
     @Published var alert = false
     @Published var alertMessage = ""
+    
+    private let playersUsecase = TopScoresUseCase()
+    
+    struct Score: Identifiable {
+        var id = UUID()
+        var value: String
+    }
+    
+    @Published var topScores: [Score] = []
     
     public var completion: (() -> Void)? = nil
 
@@ -67,6 +77,19 @@ class UserViewModel: ObservableObject {
         } catch {
             print("Error signing out.")
         }
+    }
+    
+    func viewDidApear() {
+        self.playersUsecase.fetchScores { [weak self] scores in
+            self?.scoresWasFetched(scores)
+        }
+    }
+    
+    func scoresWasFetched(_ scores: [Int]) {
+        let top: [Score] = scores.sorted().suffix(3).map { score in
+            Score(value: "\(score)")
+        }
+        self.topScores = top.reversed()
     }
 }
 

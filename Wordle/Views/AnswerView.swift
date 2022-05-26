@@ -39,6 +39,9 @@ internal struct AnswerView: View {
             Text(self.answerViewModel.nameAndScoreString)
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
+            Button("Выход") {
+                answerViewModel.exit()
+            }
             ZStack {
                 List() {
                     ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in

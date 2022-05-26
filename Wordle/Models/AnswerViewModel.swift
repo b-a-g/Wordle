@@ -14,10 +14,17 @@ public class AnswerViewModel: ObservableObject {
     @Published var answersStruct = [[Answer]]()
     
     @Published var needShowWonAlert: Bool = false
+    @Published var wonAlertMessage: String = ""
+    
     @Published var needShowFailAlert: Bool = false
+    @Published var failAlertMessage: String = ""
+    
     @Published var needShowRepeatedAlert: Bool = false
     
     @Published var nameAndScoreString: String = ""
+    
+    
+    
     
     
     public var succesCompleteHandler: (( _ points: Int) -> Void)?
@@ -66,9 +73,11 @@ public class AnswerViewModel: ObservableObject {
             for char in newWordArr {
                 newAnswer.append(Answer(char: char, status: .onPlace))
             }
-            
-            self.needShowWonAlert = true
-        } else {
+            self.score += currScore
+            self.showWonAlert()
+        }
+        else
+        {
             for index in 0..<guessWordArr.count {
                 if newWordArr[index] == guessWordArr[index] {
                     newAnswer.append(Answer(char: newWordArr[index], status: .onPlace))
@@ -80,12 +89,16 @@ public class AnswerViewModel: ObservableObject {
                     newAnswer.append(Answer(char: newWordArr[index], status: .wrong))
                 }
             }
+            self.score += currScore
         }
-        self.score += currScore
+        
         self.existedAnswers.append(newWord)
         return newAnswer
     }
-    
+    func showWonAlert() {
+        self.needShowWonAlert = true
+        self.wonAlertMessage = "Поздравляем, ты отгадал слово! \n Очки которые ты заработал: \(score)\n переходим к следующему"
+    }
     func goNextWord() {
         self.succesCompleteHandler?(self.score)
     }

@@ -10,6 +10,7 @@
 		99393BDD0F60E9E321075EBC /* libPods-Wordle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */; };
 		C713C80A283E6055005F770E /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C809283E6055005F770E /* ScoreController.swift */; };
 		C713C80C283E69EC005F770E /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C80B283E69EC005F770E /* UserController.swift */; };
+		C713C80E283F743C005F770E /* TopScoresUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C80D283F743C005F770E /* TopScoresUseCase.swift */; };
 		E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF92552809A03B005230C6 /* WordleApp.swift */; };
 		E7BF92582809A03B005230C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF92572809A03B005230C6 /* ContentView.swift */; };
 		E7BF925A2809A03F005230C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BF92592809A03F005230C6 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		C713C806283C725A005F770E /* Wordle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wordle.entitlements; sourceTree = "<group>"; };
 		C713C809283E6055005F770E /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		C713C80B283E69EC005F770E /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		C713C80D283F743C005F770E /* TopScoresUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopScoresUseCase.swift; sourceTree = "<group>"; };
 		E7BF92522809A03B005230C6 /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BF92552809A03B005230C6 /* WordleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleApp.swift; sourceTree = "<group>"; };
 		E7BF92572809A03B005230C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				E7E3DBCB282BE1DC008E748E /* Answer.swift */,
 				C713C809283E6055005F770E /* ScoreController.swift */,
 				C713C80B283E69EC005F770E /* UserController.swift */,
+				C713C80D283F743C005F770E /* TopScoresUseCase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				E7D85AF12822C9A600EC5D8F /* Database+Extensions.swift in Sources */,
 				E7D85AE7282159F900EC5D8F /* UserViewModel.swift in Sources */,
 				E7BF92562809A03B005230C6 /* WordleApp.swift in Sources */,
+				C713C80E283F743C005F770E /* TopScoresUseCase.swift in Sources */,
 				E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */,
 				E7E3DBC6282A60AB008E748E /* LetterView.swift in Sources */,
 				E7D85AED28215C1300EC5D8F /* SignUpView.swift in Sources */,
@@ -527,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wordle/Preview Content\"";
-				DEVELOPMENT_TEAM = LTQZ299BX3;
+				DEVELOPMENT_TEAM = L6RHXFS994;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;
@@ -542,7 +546,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.bag.mobile.Wordle;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.bag.mobile.Wordle.ftc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -562,7 +566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wordle/Preview Content\"";
-				DEVELOPMENT_TEAM = LTQZ299BX3;
+				DEVELOPMENT_TEAM = L6RHXFS994;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;
@@ -577,7 +581,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.bag.mobile.Wordle;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.bag.mobile.Wordle.ftc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
