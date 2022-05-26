@@ -36,7 +36,7 @@ public class AnswerViewModel: ObservableObject {
     
     public func setCurrnetNameAndScore(name: String?, score: Int) {
         let name = name ?? "Участник"
-        self.nameAndScoreString = "Привет, \(name)! Удачи в игре!\nТвои текущие очки: \(score)."
+        self.nameAndScoreString = "Привет, \(name.prefix(5)) ***! Удачи в игре!\nТвой текущий счёт: \(score)."
     }
 
     public func setGuessingWord(_ guessingWord: String) {

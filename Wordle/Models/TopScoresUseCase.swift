@@ -14,6 +14,7 @@ class TopScoresUseCase
     {
         let score: Int
         let name: String
+        let date: Date
         
         static func < (lhs: PlayerScore, rhs: PlayerScore) -> Bool {
             if lhs.score == rhs.score {
@@ -37,8 +38,11 @@ class TopScoresUseCase
                 for val in rawUsers {
                     if let userVal = val.value as? NSDictionary,
                        let score = userVal["score"] as? Int ,
-                        let name = userVal["username"] as? String {
-                        let pl = PlayerScore(score: score, name: name)
+                        let name = userVal["username"] as? String,
+                        let dateTime = userVal["lastLoginDate"] as? TimeInterval {
+                        let pl = PlayerScore(score: score,
+                                             name: name,
+                                             date: Date(timeIntervalSince1970: dateTime))
                         scores.append(pl)
                     }
                 }

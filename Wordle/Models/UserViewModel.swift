@@ -107,15 +107,17 @@ class UserViewModel: ObservableObject {
     
     func scoresWasFetched(_ scores: [TopScoresUseCase.PlayerScore]) {
         let top: [Score] = scores.sorted().suffix(3).map { score in
-            var value = ""
+            var name = ""
             if self.isAdmin {
-                value = "\(score.name) : \(score.score)"
+                name = score.name
             }
             else
             {
-                value = "\(score.score)"
+                let dateFormatterGet = DateFormatter()
+                dateFormatterGet.dateFormat = "dd MMM HH:mm"
+                name = "[Играл: \(dateFormatterGet.string(from: score.date))]"
             }
-            return Score(value: value)
+            return Score(value: "\(name) - Счет: \(score.score)")
         }
         self.topScores = top.reversed()
     }
