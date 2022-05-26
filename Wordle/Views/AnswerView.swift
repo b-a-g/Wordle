@@ -35,8 +35,10 @@ internal struct AnswerView: View {
 
     var body: some View {
         VStack {
-            Spacer(minLength: 200)
-            Text(self.answerViewModel.nameAndScoreString).font(.largeTitle)
+            Spacer(minLength: 100)
+            Text(self.answerViewModel.nameAndScoreString)
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
             ZStack {
                 List() {
                     ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
@@ -77,7 +79,7 @@ internal struct AnswerView: View {
         .onAppear {
             self.answerFieldFocused = .answer
         }
-        .alert("Поpдравляем, ты отгадал слово! \n переходим к следующему", isPresented: $answerViewModel.needShowWonAlert ) {
+        .alert("Поздравляем, ты отгадал слово! \n переходим к следующему", isPresented: $answerViewModel.needShowWonAlert ) {
             Button("Переходим к следующему", role: .cancel, action: self.startNewGame)
         }
         .alert("Такое слово уже есть", isPresented: $answerViewModel.needShowRepeatedAlert ) {

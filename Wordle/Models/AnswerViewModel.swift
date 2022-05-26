@@ -29,7 +29,7 @@ public class AnswerViewModel: ObservableObject {
     
     public func setCurrnetNameAndScore(name: String?, score: Int) {
         let name = name ?? "Участник"
-        self.nameAndScoreString = "Привет \(name), сейчас у тебя \(score) балл, удачи в этом слове :)"
+        self.nameAndScoreString = "Привет, \(name)! Удачи в игре!\nТвои текущие очки: \(score)."
     }
 
     public func setGuessingWord(_ guessingWord: String) {
@@ -46,7 +46,7 @@ public class AnswerViewModel: ObservableObject {
             }
         }
 
-        if self.answersStruct.count == 6  && self.gameStatus == .inProgress {
+        if self.existedAnswers.count == 6  && self.gameStatus == .inProgress {
             self.gameStatus = .completed
             self.needShowFailAlert = true
         }

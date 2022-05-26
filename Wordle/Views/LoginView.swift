@@ -20,8 +20,9 @@ struct LoginView: View {
   var body: some View {
     let loginView = VStack {
       // Login title
-      Text("Login".uppercased())
+      Text("Привет!\nВойди под своими данным")
         .font(.title)
+        .multilineTextAlignment(.center)
 
       Spacer()
         .frame(idealHeight: 0.1 * ScreenDimensions.height)
@@ -47,7 +48,7 @@ struct LoginView: View {
 
       #if os(iOS)
         emailInputField
-          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5).opacity(0.5)))
           .frame(width: ScreenDimensions.width * 0.8)
       #elseif os(macOS) || os(tvOS)
         emailInputField
@@ -60,13 +61,13 @@ struct LoginView: View {
           .scaledToFit()
           .frame(width: 30.0, height: 30.0)
           .opacity(0.5)
-        SecureField("Password", text: $user.password)
+        SecureField("Пароль", text: $user.password)
       }
       .padding(0.02 * ScreenDimensions.height)
 
       #if os(iOS)
         passwordInputField
-          .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5).opacity(0.5)))
           .frame(width: ScreenDimensions.width * 0.8)
       #elseif os(macOS) || os(tvOS)
         passwordInputField
@@ -78,7 +79,7 @@ struct LoginView: View {
 
       // Login button
       let loginButton = Button(action: user.login) {
-        Text("Login".uppercased())
+        Text("Войти".uppercased())
           .foregroundColor(.white)
           .font(.title2)
           .bold()
@@ -99,14 +100,14 @@ struct LoginView: View {
 
       // Navigation text
       HStack {
-        Text("Don't have an account?")
+        Text("У тебя нет аккаунта?")
         let signUpButton = Button(action: {
           signUpViewPresented = true
         }) {
-          Text("Sign up".uppercased())
+          Text("Создать!".uppercased())
             .bold()
         }
-        .sheet(isPresented: $signUpViewPresented) {
+        .fullScreenCover(isPresented: $signUpViewPresented) {
           SignUpView(user: user, isPresented: $signUpViewPresented)
         }
         #if os(iOS) || os(macOS)
@@ -117,9 +118,10 @@ struct LoginView: View {
         #endif
       }
     }
+          .fullBackground(imageName: "Wordle_screen-3")
     .alert(isPresented: $user.alert, content: {
       Alert(
-        title: Text("Message"),
+        title: Text("Сообщение"),
         message: Text(user.alertMessage),
         dismissButton: .destructive(Text("OK"))
       )
