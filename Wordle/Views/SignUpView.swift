@@ -13,7 +13,7 @@ struct SignUpView: View {
   var body: some View {
     let signUpView = VStack {
       // Sign up title
-      Text("Sign up".uppercased())
+      Text("Новый аккаунт".uppercased())
         .font(.title)
 
       Spacer()
@@ -71,7 +71,7 @@ struct SignUpView: View {
 
       // Sign up button
       let signUpButton = Button(action: user.signUp) {
-        Text("Sign up".uppercased())
+        Text("Создать".uppercased())
           .foregroundColor(.white)
           .font(.title2)
           .bold()
@@ -92,11 +92,11 @@ struct SignUpView: View {
 
       // Navigation text
       HStack {
-        Text("Already have an account?")
+        Text("Уже есть аккаунт? Тогда заходи)")
         let loginButton = Button(action: {
           isPresented = false
         }) {
-          Text("Login".uppercased())
+          Text("Войти".uppercased())
             .bold()
         }
 

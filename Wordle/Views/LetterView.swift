@@ -26,7 +26,8 @@ internal struct LetterView: View {
                 case .wrong:
                     Color.white.scaledToFit()
             }
-            Text(String(self.letter)).scaledToFit()
+            Text(String(self.letter)).scaledToFill().font(.system(size: 50)).colorInvert()
+            
         }
     }
 }

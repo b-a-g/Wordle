@@ -11,54 +11,122 @@ internal struct AnswerView: View {
 
     @State var answer: String = ""
 
-    @ObservedObject var answerViewModel: AnswerViewModel
-    @State var guessingWord: String
-
-    internal init(word: String) {
-        self.guessingWord = word.lowercased()
-        self.answerViewModel = AnswerViewModel()
-        self.answerViewModel.setGuessingWord(guessingWord)
+    private let textlimit = 5
+    
+    enum Field: Hashable {
+            case answer
+        case nothing
     }
+    
+    @FocusState private var answerFieldFocused: Field?
+
+    @ObservedObject var answerViewModel: AnswerViewModel
+
+    internal init(vm: AnswerViewModel) {
+        self.answerViewModel = vm
+        
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+        
+        self.answerFieldFocused = .answer
+    }
+    
+   
 
     var body: some View {
-        ZStack {
-            List() {
-                ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
-                    HStack(spacing: 10) {
-                        ForEach(answer, id: \.self) { element in
-                            LetterView(element.char, element.status)
-                        }
-                    }
-                }
+        VStack {
+            Spacer(minLength: 100)
+            Text(self.answerViewModel.nameAndScoreString)
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
+            Button("Выход") {
+                answerViewModel.exit()
             }
-            List() {
-                ForEach(0..<6) { _ in
+            ZStack {
+                List() {
+                    ForEach(self.answerViewModel.answersStruct, id: \.self) { answer in
+                        HStack(spacing: 10) {
+                            ForEach(answer, id: \.self) { element in
+                                LetterView(element.char, element.status)
+                            }
+                        }
+                    }
+                }
+                .frame(width: 600, alignment: .center)
+                List() {
+                    ForEach(0..<6) { _ in
+                        HStack(spacing: 10) {
+                            ForEach(0..<5) { _ in
+                                Color.gray.scaledToFit()
+                            }
+                        }
+                    }
                     HStack(spacing: 10) {
-                        ForEach(0..<5) { _ in
-                            Color.gray.scaledToFit()
-                        }
+                        TextField("Введи слово", text: $answer, onCommit: self.onCommit)
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .font(.largeTitle)
+                            .focused($answerFieldFocused, equals: .answer)
+                            .onChange(of: self.answer, perform: { value in
+                                if value.count > self.textlimit {
+                                    self.answer = String(value.prefix(self.textlimit))
+                                  }
+                              })
                     }
                 }
-                HStack(spacing: 10) {
-                    TextField("Enter your word", text: $answer)
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                    Button("Post") {
-                        if answer.count == 5 {
-                            self.answerViewModel.addAnswer(answer)
-                            answer = ""
-                        }
-                    }
-                }
+                .opacity(0.3)
+                .frame(width: 600, alignment: .center)
             }
-            .opacity(0.3)
         }
+        .fullBackground(imageName: "Wordle_screen-3")
+        .onAppear {
+            self.answerFieldFocused = .answer
+        }
+        .alert("Поздравляем, ты отгадал слово! \n переходим к следующему", isPresented: $answerViewModel.needShowWonAlert ) {
+            Button("Переходим к следующему", role: .cancel, action: self.startNewGame)
+        }
+        .alert("Такое слово уже есть", isPresented: $answerViewModel.needShowRepeatedAlert ) {
+            Button("OK", role: .cancel, action: {})
+        }
+        .alert("К сожалению ты не смог отгадать слово. \n приходи еще раз!", isPresented: $answerViewModel.needShowFailAlert ) {
+            Button("Пока пока", role: .cancel, action: self.onExit)
+        }
+        
+    }
+    
+    func startNewGame() {
+        self.answerViewModel.goNextWord()
+    }
+    
+    func onExit() {
+        self.answerViewModel.exit()
+    }
+    
+    func onCommit() {
+        if answer.count == 5 {
+            self.answerViewModel.addAnswer(answer)
+            answer = ""
+        }
+        self.answerFieldFocused = .answer
+    }
+}
+
+public extension View {
+    func fullBackground(imageName: String) -> some View {
+       return background(
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+       )
     }
 }
 
 struct AnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        let view = AnswerView(word: "empty")
+        let vm = AnswerViewModel()
+        vm.setGuessingWord("empty")
+        let view = AnswerView(vm: vm)
         view.answerViewModel.addAnswer("jopaa")
         view.answerViewModel.addAnswer("emptt")
         view.answerViewModel.addAnswer("empty")

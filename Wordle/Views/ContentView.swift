@@ -19,16 +19,12 @@ struct ContentView: View {
                         ProgressView()
                     case .failed(let error):
                         ErrorView(error: error, handler: viewModel.getWord)
-                    case .success(let word):
-                        let tabView = TabView {
-                            AnswerView(word: word)
-                        }
-                            .accentColor(Color(.systemTeal))
-                        tabView
+                    case .success(let vm):
+                        AnswerView(vm: vm)
                 }
             }
         } else {
-            LoginView()
+            LoginView(completion: { self.viewModel.newGame() })
         }
     }
 }
