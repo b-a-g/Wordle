@@ -32,6 +32,14 @@ class UserViewModel: ObservableObject {
             self.updateTopScores()
         }
     }
+    
+    init() {
+        do {
+          try Auth.auth().useUserAccessGroup("L6RHXFS994.ru.bag.mobile.Wordle.ftc")
+        } catch let error as NSError {
+          print("Error changing user access group: %@", error)
+        }
+    }
 
     private func showAlertMessage(message: String) {
         alertMessage = message
