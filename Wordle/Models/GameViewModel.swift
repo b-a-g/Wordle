@@ -83,7 +83,7 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         }
         
         let name = Auth.auth().currentUser?.displayName ?? Auth.auth().currentUser?.email
-        let date = Date()
+        let date = Calendar.current.date(byAdding: .hour, value: -1, to: Date()) ?? Date()
         let score = 0
         self.ref.child("users/\(id)/score").setValue(score)
         self.ref.child("users/\(id)/username").setValue(name)
