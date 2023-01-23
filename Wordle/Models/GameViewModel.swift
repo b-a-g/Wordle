@@ -29,6 +29,8 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
 
     private var ref = Database.root
     private var refHandle: DatabaseHandle?
+
+	private var service = NetworService(requestBuilderFactory: { RequestBuilder() } )
     
     private var currentPlayer: Player? = nil
 
@@ -36,44 +38,51 @@ internal class GameViewModel: ObservableObject, IGameViewModel {
         return Auth.auth().currentUser?.uid
     }
 
-    init() {
-        if self.getCurrentUserID() != nil {
-            self.newGame()
-        }
+	init() async {
+//        if self.getCurrentUserID() != nil {
+           await self.newGame()
+//        }
     }
     
-    func newGame() {
-        self.fetchPlayer() { [weak self] in
-            self?.getWord()
-        }
+	func newGame() async {
+		Task {
+			self.state = .loading
+			let word: Word = try await self.service.load(request: self.service.getWord())
+			self.wordFetched(word: word.word)
+		}
+//        await self.fetchPlayer()
+//		self.getWord()
     }
     
-    func fetchPlayer(completion: @escaping (() -> Void)) {
-        guard let id = self.getCurrentUserID() else {
-            return
-        }
-        let resultsRef = ref.child("users/\(id)")
-        resultsRef.getData { error, snapshot in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                self.state = .failed(error: error!)
-                completion()
-                return;
-            }
-            if let rawUser = snapshot.value as? NSDictionary,
-               let score = rawUser["score"] as? Int,
-                let dateTime = rawUser["lastLoginDate"] as? TimeInterval {
-                let name = rawUser["username"] as? String
-                self.currentPlayer = Player(id: id,
-                                            name: name,
-                                            scores: score,
-                                            lastGameDate: Date(timeIntervalSince1970: dateTime))
-                completion()
-            } else {
-                self.createUser(completion: completion)
-            }
+	func fetchPlayer() async {
+//        guard let id = self.getCurrentUserID() else {
+//            return
+//        }
 
-        }
+
+
+//        let resultsRef = ref.child("users/\(id)")
+//        resultsRef.getData { error, snapshot in
+//            guard error == nil else {
+//                print(error!.localizedDescription)
+//                self.state = .failed(error: error!)
+//                completion()
+//                return;
+//            }
+//            if let rawUser = snapshot.value as? NSDictionary,
+//               let score = rawUser["score"] as? Int,
+//                let dateTime = rawUser["lastLoginDate"] as? TimeInterval {
+//                let name = rawUser["username"] as? String
+//                self.currentPlayer = Player(id: id,
+//                                            name: name,
+//                                            scores: score,
+//                                            lastGameDate: Date(timeIntervalSince1970: dateTime))
+//                completion()
+//            } else {
+//                self.createUser(completion: completion)
+//            }
+//
+//        }
     }
     
     func createUser(completion: @escaping (() -> Void)) {
