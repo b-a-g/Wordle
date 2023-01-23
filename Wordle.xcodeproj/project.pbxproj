@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		99393BDD0F60E9E321075EBC /* libPods-Wordle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */; };
+		A23CC555297E9F560086168A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CC554297E9F560086168A /* User.swift */; };
+		A23CC557297EAC260086168A /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CC556297EAC260086168A /* Word.swift */; };
+		A28AA5B12978496600B0148D /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28AA5B02978496600B0148D /* HTTPMethod.swift */; };
+		A28AA5B329784A0C00B0148D /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28AA5B229784A0C00B0148D /* RequestConfig.swift */; };
+		A28AA5B529784A7E00B0148D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28AA5B429784A7E00B0148D /* RequestBuilder.swift */; };
+		A28AA5B729784B8900B0148D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28AA5B629784B8900B0148D /* NetworkService.swift */; };
+		A28AA5BB29784F1600B0148D /* IRequestConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28AA5BA29784F1600B0148D /* IRequestConfigurator.swift */; };
+		A28AA5BF2978583900B0148D /* EmptyQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28AA5BE2978583900B0148D /* EmptyQuery.swift */; };
 		C713C80A283E6055005F770E /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C809283E6055005F770E /* ScoreController.swift */; };
 		C713C80C283E69EC005F770E /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C80B283E69EC005F770E /* UserController.swift */; };
 		C713C80E283F743C005F770E /* TopScoresUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713C80D283F743C005F770E /* TopScoresUseCase.swift */; };
@@ -66,6 +74,14 @@
 /* Begin PBXFileReference section */
 		2069E62A388EAC39C91D31AA /* Pods-Wordle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.debug.xcconfig"; path = "Target Support Files/Pods-Wordle/Pods-Wordle.debug.xcconfig"; sourceTree = "<group>"; };
 		64ADBB1BDF723A2482734CCD /* libPods-Wordle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wordle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A23CC554297E9F560086168A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A23CC556297EAC260086168A /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		A28AA5B02978496600B0148D /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		A28AA5B229784A0C00B0148D /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
+		A28AA5B429784A7E00B0148D /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		A28AA5B629784B8900B0148D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A28AA5BA29784F1600B0148D /* IRequestConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequestConfigurator.swift; sourceTree = "<group>"; };
+		A28AA5BE2978583900B0148D /* EmptyQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyQuery.swift; sourceTree = "<group>"; };
 		C5EAD6AB36C334016513DEA5 /* Pods-Wordle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.release.xcconfig"; path = "Target Support Files/Pods-Wordle/Pods-Wordle.release.xcconfig"; sourceTree = "<group>"; };
 		C713C806283C725A005F770E /* Wordle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wordle.entitlements; sourceTree = "<group>"; };
 		C713C809283E6055005F770E /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
@@ -147,6 +163,37 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A23CC553297E9F460086168A /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				A23CC554297E9F560086168A /* User.swift */,
+				A23CC556297EAC260086168A /* Word.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		A23CC558297EB1590086168A /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				A28AA5BA29784F1600B0148D /* IRequestConfigurator.swift */,
+				A28AA5B02978496600B0148D /* HTTPMethod.swift */,
+				A28AA5B229784A0C00B0148D /* RequestConfig.swift */,
+				A28AA5BE2978583900B0148D /* EmptyQuery.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		A28AA5AF297848C000B0148D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A23CC558297EB1590086168A /* Internal */,
+				A23CC553297E9F460086168A /* DTOs */,
+				A28AA5B429784A7E00B0148D /* RequestBuilder.swift */,
+				A28AA5B629784B8900B0148D /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		C321A52EA724E9BD69E8CF68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +224,7 @@
 		E7BF92542809A03B005230C6 /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
+				A28AA5AF297848C000B0148D /* Network */,
 				C713C806283C725A005F770E /* Wordle.entitlements */,
 				E7D85AEE28215DFB00EC5D8F /* GoogleService-Info2.plist */,
 				E7D85AAB2820E97300EC5D8F /* GoogleService-Info.plist */,
@@ -382,13 +430,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C713C80C283E69EC005F770E /* UserController.swift in Sources */,
+				A23CC557297EAC260086168A /* Word.swift in Sources */,
 				E7E3DBCA282BDE8B008E748E /* AnswerViewModel.swift in Sources */,
+				A28AA5BF2978583900B0148D /* EmptyQuery.swift in Sources */,
+				A28AA5B12978496600B0148D /* HTTPMethod.swift in Sources */,
 				E7D85A952820C88200EC5D8F /* GameViewModel.swift in Sources */,
+				A23CC555297E9F560086168A /* User.swift in Sources */,
 				C713C80A283E6055005F770E /* ScoreController.swift in Sources */,
 				E7BF92582809A03B005230C6 /* ContentView.swift in Sources */,
+				A28AA5B529784A7E00B0148D /* RequestBuilder.swift in Sources */,
 				E7E3DBC0282A397A008E748E /* AnswerView.swift in Sources */,
 				E7D85AEB28215BCB00EC5D8F /* ScreenDimensions.swift in Sources */,
 				E7E3DBC4282A5FF6008E748E /* GameStatus.swift in Sources */,
+				A28AA5B729784B8900B0148D /* NetworkService.swift in Sources */,
 				E7E3DBCC282BE1DC008E748E /* Answer.swift in Sources */,
 				E7D85AF12822C9A600EC5D8F /* Database+Extensions.swift in Sources */,
 				E7D85AE7282159F900EC5D8F /* UserViewModel.swift in Sources */,
@@ -397,9 +451,11 @@
 				E7D85AA72820DAB700EC5D8F /* ResultState.swift in Sources */,
 				E7E3DBC6282A60AB008E748E /* LetterView.swift in Sources */,
 				E7D85AED28215C1300EC5D8F /* SignUpView.swift in Sources */,
+				A28AA5B329784A0C00B0148D /* RequestConfig.swift in Sources */,
 				E7D85AE928215BAF00EC5D8F /* LoginView.swift in Sources */,
 				E7E3DBC2282A5FDF008E748E /* CharPlace.swift in Sources */,
 				E7D85AAA2820DD7700EC5D8F /* ErrorView.swift in Sources */,
+				A28AA5BB29784F1600B0148D /* IRequestConfigurator.swift in Sources */,
 				E7D85AA42820D82100EC5D8F /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,7 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Wordle/Preview Content\"";
-				DEVELOPMENT_TEAM = L6RHXFS994;
+				DEVELOPMENT_TEAM = ZKC4WQ4FNW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;

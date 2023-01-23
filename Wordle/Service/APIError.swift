@@ -10,6 +10,7 @@ import Foundation
 enum APIError: Error {
     case decodingError
     case errorCode(Int)
+	case notFound
     case unknown
 }
 
